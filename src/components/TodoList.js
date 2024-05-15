@@ -1,32 +1,45 @@
 import React, { useState } from 'react';
+import TodoItem from './TodoItem';
+import EmptyMessage from './EmptyMessage';
+import RemoveCompletedButton from './RemoveCompletedButton';
 
 function TodoList() {
   const [todoItems, setTodoItems] = useState([
-    "Read SpringBoot",
-    "Complete assignments",
-    "Prepare breakfast",
-    "Sleep for 2 hours",
-    "Take a shower"
+    { id: 1, text: "Read SpringBoot", completed: false },
+    { id: 2, text: "Complete assignments", completed: false },
+    { id: 3, text: "Prepare breakfast", completed: false },
+    { id: 4, text: "Sleep for 2 hours", completed: false },
+    { id: 5, text: "Take a shower", completed: false }
   ]);
 
-  const handleEmptyButtonClick = () => {
-    setTodoItems([]);
+  const handleItemClick = (id) => {
+    setTodoItems(todoItems.map(item =>
+      item.id === id ? { ...item, completed: !item.completed } : item
+    ));
+  };
+
+  const handleRemoveCompleted = () => {
+    setTodoItems(todoItems.filter(item => !item.completed));
   };
 
   return (
     <div className="todo-list">
       {todoItems.length === 0 ? (
-        <p><em>Nothing to do buddy. Sleep!</em></p>
+        <EmptyMessage />
       ) : (
-        todoItems.map((item, index) => (
-          <div key={index} className="todo-item">
-            {item}
-          </div>
-        ))
+        <table>
+          <tbody>
+            {todoItems.map(item => (
+              <TodoItem
+                key={item.id}
+                item={item}
+                onItemClick={handleItemClick}
+              />
+            ))}
+          </tbody>
+        </table>
       )}
-      {todoItems.length > 0 && (
-        <button onClick={handleEmptyButtonClick}>Empty</button>
-      )}
+      <RemoveCompletedButton onClick={handleRemoveCompleted} />
     </div>
   );
 }

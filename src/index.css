@@ -5,3 +5,56 @@
 .Header {
   text-align: center;
 }
+/* App.css */
+.todo-list {
+  margin-top: 20px;
+  text-align: center;
+  display: flex;
+  flex-direction: column; /* Stack items vertically */
+  align-items: center; /* Center items horizontally */
+}
+
+table {
+  border-collapse: collapse;
+  border: 1px solid #ccc; /* Add border */
+  background-color: #fff; /* Add background color */
+}
+
+table td {
+  padding: 10px;
+  border-bottom: 1px solid #ccc;
+}
+
+.todo-item {
+  cursor: pointer;
+}
+
+.todo-item:hover {
+  background-color: #f9f9f9;
+}
+
+.todo-item.completed {
+  text-decoration: line-through;
+  color: #888;
+}
+
+.empty-message {
+  margin-top: 20px;
+  font-style: italic;
+  color: #888;
+}
+
+.empty-button {
+  margin-top: 10px;
+  padding: 8px 16px;
+  background-color: #dc3545;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.empty-button:hover {
+  background-color: #c82333;
+}
